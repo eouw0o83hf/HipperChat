@@ -1,0 +1,112 @@
+﻿@model HipperChat.Web.Models.WriteOnly.MessageModel
+@{
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+
+@section Scripts {    
+    <script type="text/javascript">
+        $(".room-checkbox").on("change", function () {
+            $(".room-checkbox").not($(this)).attr("checked", false);
+        });
+
+        var colors = Array("yellow", "red", "green", "purple", "gray");
+        $("#such-color").on("click", function () {
+            suchColor();
+        });
+        function suchColor() {
+            $("#Color").val(colors[Math.floor(Math.random() * colors.length)]);
+        }
+        suchColor();
+
+        $("form").unbind();
+        $("form").submit(function () {
+
+            $.post($(this).attr("action"), $("form").serialize())
+
+            suchColor();
+            $("#Message").val("");
+            return false;
+        });
+
+        $("a.a-emoticon").on("click", function () {
+            $("#Message").val($("#Message").val() + $(this).html());
+        });
+    </script>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(a => a.ApiKey)
+        
+    <table>
+        <tbody>
+            <tr>
+                <td>Such Message
+                </td>
+                <td>
+                    @Html.TextAreaFor(a => a.Message)
+                </td>
+            </tr>
+            <tr>
+                <td>Wow
+                </td>
+                <td>
+                    @Html.TextBoxFor(a => a.Color) <button type="button" id="such-color">such color</button>
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(a => a.IsHtml, "Very marked up?")
+                </td>
+                <td>
+                    @Html.CheckBoxFor(a => a.IsHtml)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(a => a.SuchAnnoy, "So notify?")
+                </td>
+                <td>
+                    @Html.CheckBoxFor(a => a.SuchAnnoy)
+                </td>
+            </tr>
+            <tr>
+                <td>wut room?
+                </td>
+                <td>
+                    <br /><!-- Because I'm not good enough at styling to have fun making this list have a higher top margin -->
+                    <ul>
+                        @for (var i = 0; i < Model.Rooms.Count; ++i)
+                        {
+                            <li>
+                                @Html.Hidden("Rooms.Index", i)
+                                @Html.HiddenFor(a => a.Rooms[i].Id)
+                                @Html.CheckBoxFor(a => a.Rooms[i].IsSelected, new { @class = "room-checkbox" })
+                                @Html.LabelFor(a => a.Rooms[i].IsSelected, Model.Rooms[i].Name)
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+        
+    <button type="submit">Hit it</button>
+}
+
+<div id="emoticons">
+    @{
+        var emoticons = from e in Model.Emoticons
+                        group e by e.IsGlobal into e
+                        orderby e.Key descending
+                        select e;
+    }
+    @foreach (var group in emoticons)
+    {
+        <h3>@(group.Key ? "Global" : "Spotlite")</h3>
+        <ul>
+            @foreach (var emoticon in group.OrderBy(a => a.Code))
+            {
+                <li><a href="javascript:void(0)" class="a-emoticon">(@emoticon.Code)</a> <img src="@emoticon.Url" /></li>
+            }
+        </ul>
+    }
+</div>
