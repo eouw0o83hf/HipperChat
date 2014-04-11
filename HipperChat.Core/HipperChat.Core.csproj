@@ -42,11 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\AuthenticationRequest.cs" />
+    <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="Authentication\Token.cs" />
     <Compile Include="Emoticons\Emoticon.cs" />
     <Compile Include="Emoticons\EmoticonMetadata.cs" />
     <Compile Include="Emoticons\IEmoticonService.cs" />
     <Compile Include="GenericResult.cs" />
-    <Compile Include="Json\LowercaseJsonResolver.cs" />
+    <Compile Include="Helpers\HttpHelpers.cs" />
     <Compile Include="Rooms\IRoomService.cs" />
     <Compile Include="Links.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
