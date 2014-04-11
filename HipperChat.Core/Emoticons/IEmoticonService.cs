@@ -11,6 +11,7 @@ namespace HipperChat.Core.Emoticons
     public interface IEmoticonService
     {
         ICollection<Emoticon> GetEmoticons();
+        EmoticonMetadata GetEmoticon(string shortcut);
     }
 
     public class EmoticonService : IEmoticonService
@@ -50,6 +51,21 @@ namespace HipperChat.Core.Emoticons
             }
 
             return results;
+        }
+
+        public EmoticonMetadata GetEmoticon(string shortcut)
+        {
+            try
+            {
+                var client = new WebClient();
+                var json = client.DownloadString("https://api.hipchat.com/v2/emoticon/" + shortcut + "?auth_token=" + _apiKey);
+                return JsonConvert.DeserializeObject<EmoticonMetadata>(json);
+            }
+            catch
+            {
+                // No such emoticon
+                return null;
+            }
         }
     }
 }

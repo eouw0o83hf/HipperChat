@@ -19,6 +19,8 @@ namespace HipperChat.Console
             IRoomService core = new RoomService(apiKey);
             IEmoticonService emo = new EmoticonService(apiKey);
 
+            var single = emo.GetEmoticon("un");
+
             var emoticons = emo.GetEmoticons();
 
             foreach (var emote in emoticons)

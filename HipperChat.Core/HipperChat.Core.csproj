@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Emoticons\Emoticon.cs" />
+    <Compile Include="Emoticons\EmoticonMetadata.cs" />
     <Compile Include="Emoticons\IEmoticonService.cs" />
     <Compile Include="GenericResult.cs" />
     <Compile Include="Rooms\IRoomService.cs" />
