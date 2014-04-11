@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipperChat.Test", "..\Hippe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipperChat.Console", "..\HipperChat.Console\HipperChat.Console.csproj", "{34BE720B-E8F3-4A77-8887-027B3476A6B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HipperChat.Web", "..\HipperChat.Web\HipperChat.Web.csproj", "{83E53047-678A-4809-AEB7-C5CA1CF46642}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{34BE720B-E8F3-4A77-8887-027B3476A6B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34BE720B-E8F3-4A77-8887-027B3476A6B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34BE720B-E8F3-4A77-8887-027B3476A6B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83E53047-678A-4809-AEB7-C5CA1CF46642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83E53047-678A-4809-AEB7-C5CA1CF46642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83E53047-678A-4809-AEB7-C5CA1CF46642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83E53047-678A-4809-AEB7-C5CA1CF46642}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
