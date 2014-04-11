@@ -52,7 +52,7 @@ namespace HipperChat.Web.Controllers
                     {
                         Id = a.UserId,
                         Name = a.Name,
-                        MentionName = a.MentionName
+                        MentionName = a.Mention_Name
                     }).ToList()
             };
 

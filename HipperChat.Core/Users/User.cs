@@ -10,7 +10,8 @@ namespace HipperChat.Core.Users
     {
         public int UserId { get; set; }
         public string Name { get; set; }
-        public string MentionName { get; set; }
+        public Links Links { get; set; }
+        public string Mention_Name { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

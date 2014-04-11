@@ -31,6 +31,10 @@
         $("a.a-emoticon").on("click", function () {
             $("#Message").val($("#Message").val() + $(this).html());
         });
+        
+        $("a.a-user").on("click", function () {
+            $("#Message").val($("#Message").val() + $(this).html());
+        });
     </script>
 }
 
@@ -102,7 +106,7 @@
     <ul>
     @foreach (var user in users)
     {
-        <li><a href="javascript:void(0)" class="a-user">(@user.Name)</a></li>
+        <li><a href="javascript:void(0)" class="a-user">@@@user.MentionName</a></li>
     }
     </ul>
 </div>
