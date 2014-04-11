@@ -16,6 +16,7 @@ namespace HipperChat.Web.Models.WriteOnly
         public string ApiKey { get; set; }
 
         public List<RoomItem> Rooms { get; set; }
+        public List<UserItem> Users { get; set; } 
         public List<EmoticonItem> Emoticons { get; set; }
     }
 
@@ -31,5 +32,12 @@ namespace HipperChat.Web.Models.WriteOnly
         public bool IsGlobal { get; set; }
         public string Code { get; set; }
         public string Url { get; set; }
+    }
+
+    public class UserItem
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string MentionName { get; set; }
     }
 }

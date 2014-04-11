@@ -92,6 +92,21 @@
     <button type="submit">Hit it</button>
 }
 
+<div id="users">
+    @{
+        var users = from e in Model.Users
+                        orderby e.Name
+                        select e;
+    }
+    
+    <ul>
+    @foreach (var user in users)
+    {
+        <li><a href="javascript:void(0)" class="a-user">(@user.Name)</a></li>
+    }
+    </ul>
+</div>
+
 <div id="emoticons">
     @{
         var emoticons = from e in Model.Emoticons
