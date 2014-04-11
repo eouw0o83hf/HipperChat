@@ -42,8 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Rooms\IHipChatService.cs" />
-    <Compile Include="Rooms\Links.cs" />
+    <Compile Include="Emoticons\Emoticon.cs" />
+    <Compile Include="Emoticons\IEmoticonService.cs" />
+    <Compile Include="GenericResult.cs" />
+    <Compile Include="Rooms\IRoomService.cs" />
+    <Compile Include="Links.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rooms\Room.cs" />
   </ItemGroup>
