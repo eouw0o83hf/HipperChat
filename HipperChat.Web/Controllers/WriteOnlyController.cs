@@ -1,4 +1,5 @@
-﻿using HipperChat.Core.Rooms;
+﻿using HipperChat.Core.Emoticons;
+using HipperChat.Core.Rooms;
 using HipperChat.Web.Models.WriteOnly;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace HipperChat.Web.Controllers
             var roomService = new RoomService(apiKey);
             var rooms = roomService.GetRooms();
 
+            var emoticonService = new EmoticonService(apiKey);
+            var emoticons = emoticonService.GetEmoticons();
+
             var model = new MessageModel
             {
                 ApiKey = apiKey,
@@ -33,6 +37,12 @@ namespace HipperChat.Web.Controllers
                     Id = a.Id,
                     IsSelected = false,
                     Name = a.Name
+                }).ToList(),
+                Emoticons = emoticons.Select(a => new EmoticonItem
+                {
+                    Code = a.Shortcut,
+                    IsGlobal = a.Source == EmoticonSource.Global,
+                    Url = a.Url
                 }).ToList()
             };
 
