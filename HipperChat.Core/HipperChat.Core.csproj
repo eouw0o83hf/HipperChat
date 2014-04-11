@@ -46,9 +46,11 @@
     <Compile Include="Emoticons\EmoticonMetadata.cs" />
     <Compile Include="Emoticons\IEmoticonService.cs" />
     <Compile Include="GenericResult.cs" />
+    <Compile Include="Json\LowercaseJsonResolver.cs" />
     <Compile Include="Rooms\IRoomService.cs" />
     <Compile Include="Links.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rooms\Message.cs" />
     <Compile Include="Rooms\Room.cs" />
   </ItemGroup>
   <ItemGroup>
