@@ -13,19 +13,27 @@ namespace HipperChat.Core.Rooms
     {
         ICollection<Room> GetRooms(string apiKey);
         void SendMessage(string apiKey, int roomId, Message message);
+        ICollection<IncomingChat> GetHistory(string apiKey, int roomId);
     }
 
     public class RoomService : BaseService, IRoomService
     {
         public ICollection<Room> GetRooms(string apiKey)
         {
-            return GetActionResult<GenericResult<Room>>("room", apiKey).Items;
+            return DoGet<GenericResult<Room>>("room", apiKey).Items;
         }
 
         public void SendMessage(string apiKey, int roomId, Message message)
         {
             var command = string.Format("room/{0}/notification", roomId);
-            var response = PostObject(command, apiKey, message);
+            var response = DoPost(command, apiKey, message);
+        }
+
+        public ICollection<IncomingChat> GetHistory(string apiKey, int roomId)
+        {
+            var command = string.Format("room/{0}/history", roomId);
+            var response = DoGet<GenericResult<IncomingChat>>(command, apiKey);
+            return response.Items;
         }
     }
 }

@@ -81,6 +81,7 @@
                                 @Html.HiddenFor(a => a.Rooms[i].Id)
                                 @Html.CheckBoxFor(a => a.Rooms[i].IsSelected, new { @class = "room-checkbox" })
                                 @Html.LabelFor(a => a.Rooms[i].IsSelected, Model.Rooms[i].Name)
+                                @Html.ActionLink("Go to the room", "Read", new { Model.ApiKey, RoomId = Model.Rooms[i].Id })
                             </li>
                         }
                     </ul>

@@ -46,7 +46,7 @@ namespace HipperChat.Core
             return builder.ToString();
         }
         
-        protected static T GetActionResult<T>(string command, string token, IDictionary<string, string> urlParams = null)
+        protected static T DoGet<T>(string command, string token, IDictionary<string, string> urlParams = null)
         {
             var url = BuildUrl(command, token, urlParams);
 
@@ -59,7 +59,7 @@ namespace HipperChat.Core
             return JsonConvert.DeserializeObject<T>(json);
         }
         
-        protected static string PostObject(string command, string token, object postObject, IDictionary<string, string> urlParams = null)
+        protected static string DoPost(string command, string token, object postObject, IDictionary<string, string> urlParams = null)
         {
             var postData = JsonConvert.SerializeObject(postObject, Formatting.Indented, new JsonSerializerSettings
             {
@@ -89,9 +89,9 @@ namespace HipperChat.Core
             return response;
         }
 
-        protected static T PostObject<T>(string command, string token, object postObject, IDictionary<string, string> urlParams = null)
+        protected static T DoPost<T>(string command, string token, object postObject, IDictionary<string, string> urlParams = null)
         {
-            var response = PostObject(command, token, postObject, urlParams);
+            var response = DoPost(command, token, postObject, urlParams);
             return JsonConvert.DeserializeObject<T>(response);
         }
 

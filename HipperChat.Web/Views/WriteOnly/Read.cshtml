@@ -1,0 +1,13 @@
+﻿@model HipperChat.Web.Models.WriteOnly.ReadModel
+@{
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+<h3>Items:</h3>
+<ul>
+@foreach (var item in Model.Items)
+{
+    <li>
+        @item
+    </li>
+}
+</ul>

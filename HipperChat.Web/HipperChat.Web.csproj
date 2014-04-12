@@ -109,11 +109,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\WriteOnlyController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Chat\RoomViewModel.cs" />
+    <Compile Include="Models\Chat\SelectRoomViewModel.cs" />
     <Compile Include="Models\WriteOnly\MessageModel.cs" />
+    <Compile Include="Models\WriteOnly\ReadModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +156,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Global.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\WriteOnly\Read.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chat\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chat\ChooseRoom.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Chat\Room.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

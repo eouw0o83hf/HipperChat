@@ -1,0 +1,15 @@
+﻿@model HipperChat.Web.Models.Chat.SelectRoomViewModel
+@{
+    ViewBag.Title = "ChooseRoom";
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+
+<h2>What room do you want?</h2>
+<ul>
+    @foreach (var room in Model.Rooms)
+    {
+        <li>
+            @Html.ActionLink(room.Value, "Room", new { roomId = room.Key })
+        </li>
+    }
+</ul>

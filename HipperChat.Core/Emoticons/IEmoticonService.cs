@@ -32,7 +32,7 @@ namespace HipperChat.Core.Emoticons
                         { "type", source.ToString().ToLowerInvariant() }
                     };
 
-                    var response = GetActionResult<GenericResult<Emoticon>>("emoticon", apiKey, parameters);
+                    var response = DoGet<GenericResult<Emoticon>>("emoticon", apiKey, parameters);
 
                     foreach (var item in response.Items)
                     {
@@ -56,7 +56,7 @@ namespace HipperChat.Core.Emoticons
             var command = string.Format("emoticon/{0}", shortcut);
             try
             {
-                return GetActionResult<EmoticonMetadata>(command, apiKey);
+                return DoGet<EmoticonMetadata>(command, apiKey);
             }
             catch
             {

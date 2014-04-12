@@ -29,7 +29,7 @@ namespace HipperChat.Core.Authentication
                 }
             };
 
-            return PostObject<Token>("oath/token", null, request);
+            return DoPost<Token>("oath/token", null, request);
         }
     }
 }

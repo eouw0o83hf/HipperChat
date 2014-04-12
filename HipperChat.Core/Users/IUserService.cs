@@ -18,7 +18,7 @@ namespace HipperChat.Core.Users
     {
         public ICollection<User> GetUsers(string apiKey)
         {
-            var response = GetActionResult<GenericResult<User>>("user", apiKey);
+            var response = DoGet<GenericResult<User>>("user", apiKey);
             return response.Items;
         }
     }

@@ -15,7 +15,7 @@ namespace HipperChat.Web
 
             routes.MapRoute(
                 name: "WriteOnlyPage",
-                url: "{apiKey}",
+                url: "writeonly/{apiKey}",
                 defaults: new { controller = "WriteOnly", action = "Index", apiKey = UrlParameter.Optional }
             );
 
