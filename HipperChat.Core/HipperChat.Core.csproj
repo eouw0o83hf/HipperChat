@@ -50,6 +50,7 @@
     <Compile Include="Emoticons\IEmoticonService.cs" />
     <Compile Include="GenericResult.cs" />
     <Compile Include="Helpers\HttpHelpers.cs" />
+    <Compile Include="Helpers\TcpServer.cs" />
     <Compile Include="Rooms\IRoomService.cs" />
     <Compile Include="Links.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
