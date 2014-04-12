@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+
+@using (Html.BeginForm("ChooseRoom", "Chat", FormMethod.Get))
+{
+    <label for="apiKey">What is your API key?</label>
+    <input name="apiKey" type="text" />
+    <br />
+    <button type="submit">Go</button>
+}

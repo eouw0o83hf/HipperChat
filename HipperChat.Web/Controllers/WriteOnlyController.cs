@@ -50,12 +50,21 @@ namespace HipperChat.Web.Controllers
                 }).ToList(),
                 Users = users.Select(a => new UserItem
                     {
-                        Id = a.UserId,
+                        Id = a.Id,
                         Name = a.Name,
                         MentionName = a.MentionName
                     }).ToList()
             };
 
+            return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Read(string apiKey, int roomId)
+        {
+            var roomService = new RoomService();
+            var history = roomService.GetHistory(apiKey, roomId);
+            var model = new ReadModel { Items = history.Select(a => a.Message).ToList() };
             return View(model);
         }
 

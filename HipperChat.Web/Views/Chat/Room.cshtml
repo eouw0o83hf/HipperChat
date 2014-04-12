@@ -1,0 +1,15 @@
+﻿@model HipperChat.Web.Models.Chat.RoomViewModel
+@{
+    ViewBag.Title = "Room";
+    Layout = "~/Views/Shared/_Global.cshtml";
+}
+
+<h2>Room</h2>
+<ul>
+    @foreach (var message in Model.Messages)
+    {
+        <li style="background-color: @message.Color">
+            @message.From: @message.Message
+        </li>
+    }
+</ul>
