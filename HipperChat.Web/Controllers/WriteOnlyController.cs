@@ -21,14 +21,14 @@ namespace HipperChat.Web.Controllers
             }
 
             // Yup, I'm new()ing things up.
-            var roomService = new RoomService(apiKey);
-            var rooms = roomService.GetRooms();
+            var roomService = new RoomService();
+            var rooms = roomService.GetRooms(apiKey);
 
-            var userService = new UserService(apiKey);
-            var users = userService.GetUsers().Where(a => !a.IsDeleted);
+            var userService = new UserService();
+            var users = userService.GetUsers(apiKey).Where(a => !a.IsDeleted);
 
-            var emoticonService = new EmoticonService(apiKey);
-            var emoticons = emoticonService.GetEmoticons();
+            var emoticonService = new EmoticonService();
+            var emoticons = emoticonService.GetEmoticons(apiKey);
 
             var model = new MessageModel
             {
@@ -52,7 +52,7 @@ namespace HipperChat.Web.Controllers
                     {
                         Id = a.UserId,
                         Name = a.Name,
-                        MentionName = a.Mention_Name
+                        MentionName = a.MentionName
                     }).ToList()
             };
 
@@ -62,7 +62,7 @@ namespace HipperChat.Web.Controllers
         [HttpPost]
         public ActionResult Index(MessageModel model)
         {
-            var roomService = new RoomService(model.ApiKey);
+            var roomService = new RoomService();
             var roomId = model.Rooms.Where(a => a.IsSelected).Select(a => (int?)a.Id).FirstOrDefault();
             if (roomId == null)
             {
@@ -76,7 +76,7 @@ namespace HipperChat.Web.Controllers
                 Notify = model.SuchAnnoy,
                 Text = model.Message
             };
-            roomService.SendMessage(roomId.Value, message);
+            roomService.SendMessage(model.ApiKey, roomId.Value, message);
 
 
             return new EmptyResult();

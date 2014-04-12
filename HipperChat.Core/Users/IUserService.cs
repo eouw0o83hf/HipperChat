@@ -11,26 +11,15 @@ namespace HipperChat.Core.Users
 {
     public interface IUserService
     {
-        ICollection<User> GetUsers();
+        ICollection<User> GetUsers(string apiKey);
     }
 
-    public class UserService : IUserService
+    public class UserService : BaseService, IUserService
     {
-        private readonly string _apiKey;
-
-        public UserService(string apiKey)
+        public ICollection<User> GetUsers(string apiKey)
         {
-            _apiKey = apiKey;
-        }
-
-        public ICollection<User> GetUsers()
-        {
-            using (var client = new WebClient())
-            {
-                var json = client.DownloadString("https://api.hipchat.com/v2/user?format=json&auth_token=" + _apiKey);
-                var response = JsonConvert.DeserializeObject<GenericResult<User>>(json);
-                return response.Items;
-            }
+            var response = GetActionResult<GenericResult<User>>("user", apiKey);
+            return response.Items;
         }
     }
 }

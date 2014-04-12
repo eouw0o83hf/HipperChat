@@ -10,20 +10,13 @@ namespace HipperChat.Core.Emoticons
 {
     public interface IEmoticonService
     {
-        ICollection<Emoticon> GetEmoticons();
-        EmoticonMetadata GetEmoticon(string shortcut);
+        ICollection<Emoticon> GetEmoticons(string apiKey);
+        EmoticonMetadata GetEmoticon(string apiKey, string shortcut);
     }
 
-    public class EmoticonService : IEmoticonService
+    public class EmoticonService : BaseService, IEmoticonService
     {
-        private readonly string _apiKey;
-
-        public EmoticonService(string apiKey)
-        {
-            _apiKey = apiKey;
-        }
-
-        public ICollection<Emoticon> GetEmoticons()
+        public ICollection<Emoticon> GetEmoticons(string apiKey)
         {
             var client = new WebClient();
             var results = new List<Emoticon>();
@@ -33,8 +26,13 @@ namespace HipperChat.Core.Emoticons
             {
                 for (var i = 0; ; ++i)
                 {
-                    var json = client.DownloadString("https://api.hipchat.com/v2/emoticon?auth_token=" + _apiKey + "&start-index=" + (i * 100) + "&type=" + source.ToString().ToLowerInvariant());
-                    var response = JsonConvert.DeserializeObject<GenericResult<Emoticon>>(json);
+                    var parameters = new Dictionary<string, string>
+                    {
+                        { "start-index", (i * 100).ToString() },
+                        { "type", source.ToString().ToLowerInvariant() }
+                    };
+
+                    var response = GetActionResult<GenericResult<Emoticon>>("emoticon", apiKey, parameters);
 
                     foreach (var item in response.Items)
                     {
@@ -53,13 +51,12 @@ namespace HipperChat.Core.Emoticons
             return results;
         }
 
-        public EmoticonMetadata GetEmoticon(string shortcut)
+        public EmoticonMetadata GetEmoticon(string apiKey, string shortcut)
         {
+            var command = string.Format("emoticon/{0}", shortcut);
             try
             {
-                var client = new WebClient();
-                var json = client.DownloadString("https://api.hipchat.com/v2/emoticon/" + shortcut + "?auth_token=" + _apiKey);
-                return JsonConvert.DeserializeObject<EmoticonMetadata>(json);
+                return GetActionResult<EmoticonMetadata>(command, apiKey);
             }
             catch
             {

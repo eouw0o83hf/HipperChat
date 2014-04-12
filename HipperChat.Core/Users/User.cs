@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,8 @@ namespace HipperChat.Core.Users
         public int UserId { get; set; }
         public string Name { get; set; }
         public Links Links { get; set; }
-        public string Mention_Name { get; set; }
+        [JsonProperty("mention_name")]
+        public string MentionName { get; set; }
         public bool IsDeleted { get; set; }
     }
 }

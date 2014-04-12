@@ -1,5 +1,4 @@
-﻿using HipperChat.Core.Helpers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +12,11 @@ namespace HipperChat.Core.Authentication
         Token GetToken(string username, string password);
     }
 
-    public class AuthenticationService : IAuthenticationService
+    public class AuthenticationService : BaseService, IAuthenticationService
     {
         public Token GetToken(string username, string password)
         {
-            var response = HttpHelpers.PostObject("https://api.hipchat.com/v2/oauth/token", new AuthenticationRequest
+            var request = new AuthenticationRequest
             {
                 Username = username,
                 Password = password,
@@ -28,8 +27,9 @@ namespace HipperChat.Core.Authentication
                     Scopes.SendNotifications,
                     Scopes.ViewGroup
                 }
-            });
-            return JsonConvert.DeserializeObject<Token>(response);
+            };
+
+            return PostObject<Token>("oath/token", null, request);
         }
     }
 }
