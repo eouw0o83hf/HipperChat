@@ -31,6 +31,10 @@
         $("a.a-emoticon").on("click", function () {
             $("#Message").val($("#Message").val() + $(this).html());
         });
+        
+        $("a.a-user").on("click", function () {
+            $("#Message").val($("#Message").val() + $(this).html());
+        });
     </script>
 }
 
@@ -91,6 +95,21 @@
         
     <button type="submit">Wow</button>
 }
+
+<div id="users">
+    @{
+        var users = from e in Model.Users
+                        orderby e.Name
+                        select e;
+    }
+    
+    <ul>
+    @foreach (var user in users)
+    {
+        <li><a href="javascript:void(0)" class="a-user">@@@user.MentionName</a></li>
+    }
+    </ul>
+</div>
 
 <div id="emoticons">
     @{
