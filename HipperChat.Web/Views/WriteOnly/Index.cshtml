@@ -28,11 +28,7 @@
             return false;
         });
 
-        $("a.a-emoticon").on("click", function () {
-            $("#Message").val($("#Message").val() + $(this).html());
-        });
-        
-        $("a.a-user").on("click", function () {
+        $("a.a-message-append").on("click", function () {
             $("#Message").val($("#Message").val() + $(this).html());
         });
     </script>
@@ -106,7 +102,7 @@
     <ul>
     @foreach (var user in users)
     {
-        <li><a href="javascript:void(0)" class="a-user">@@@user.MentionName</a></li>
+        <li><a href="javascript:void(0)" class="a-message-append">@@@user.MentionName</a></li>
     }
     </ul>
 </div>
@@ -124,7 +120,7 @@
         <ul>
             @foreach (var emoticon in group.OrderBy(a => a.Code))
             {
-                <li><a href="javascript:void(0)" class="a-emoticon">(@emoticon.Code)</a> <img src="@emoticon.Url" /></li>
+                <li><a href="javascript:void(0)" class="a-message-append">(@emoticon.Code)</a> <img src="@emoticon.Url" /></li>
             }
         </ul>
     }
