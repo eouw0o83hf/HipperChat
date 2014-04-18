@@ -1,4 +1,5 @@
 ﻿using HipperChat.Core.Emoticons;
+using HipperChat.Core.Helpers;
 using HipperChat.Core.Rooms;
 using HipperChat.Web.Models.WriteOnly;
 using System;
@@ -70,6 +71,18 @@ namespace HipperChat.Web.Controllers
 
 
             return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult Dogify(string toDogify)
+        {
+            if (String.IsNullOrEmpty(toDogify))
+            {
+                return new EmptyResult();
+            }
+            var dogifier = new DogifyService();
+            var result = dogifier.Dogify(toDogify);
+            return new ContentResult{Content = result.ConvenientlyFormattedDogePairs };
         }
     }
 }
