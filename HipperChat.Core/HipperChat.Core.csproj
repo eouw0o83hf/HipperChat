@@ -50,7 +50,8 @@
     <Compile Include="Emoticons\EmoticonMetadata.cs" />
     <Compile Include="Emoticons\IEmoticonService.cs" />
     <Compile Include="GenericResult.cs" />
-    <Compile Include="Rooms\IncomingChat.cs" />
+    <Compile Include="Helpers\DogeResult.cs" />
+    <Compile Include="Helpers\IDogifyService.cs" />
     <Compile Include="Rooms\IRoomService.cs" />
     <Compile Include="Links.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

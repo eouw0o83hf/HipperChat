@@ -29,8 +29,23 @@
         });
 
         $("a.a-message-append").on("click", function () {
-            $("#Message").val($("#Message").val() + $(this).html());
+            $("#Message").val($("#Message").val() + $(this).html() + ' ');
         });
+        
+        $("#doge-button").on("click", function () {
+            dogify();
+        });
+        function dogify() {
+            $("#very-markup").not($(this)).attr("checked", true);
+            var actionLink = '@(Url.Action("Dogify"))' + '?toDogify=' + $("#Message").val();
+            $.ajax({
+                url: actionLink,
+                type: "post",
+                success: function (data) {
+                    $("#Message").val('<pre>' + data + '</pre>');
+                },
+            });
+        }
     </script>
 }
 
@@ -58,7 +73,7 @@
                 <td>@Html.LabelFor(a => a.IsHtml, "Very marked up?")
                 </td>
                 <td>
-                    @Html.CheckBoxFor(a => a.IsHtml)
+                    @Html.CheckBoxFor(a => a.IsHtml, new Dictionary<string, object>{{"id", "very-markup"}})
                 </td>
             </tr>
             <tr>
@@ -91,6 +106,7 @@
     </table>
         
     <button type="submit">Wow</button>
+    <button type="button" id="doge-button">Dogify</button>
 }
 
 <div id="users">
