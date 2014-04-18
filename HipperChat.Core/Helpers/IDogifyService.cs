@@ -29,7 +29,7 @@ namespace HipperChat.Core.Helpers
 
         public DogeResult Dogify(string fullString, int? length = 0)
         {
-            var fullList = Regex.Split(fullString, @"[^\w]").Select(a => a.ToLower()).Where(a => a != String.Empty && !_articles.Contains(a)).ToList();
+            var fullList = Regex.Split(fullString, @"\s+").Select(a => a.ToLower()).Where(a => a != String.Empty && !_articles.Contains(a)).ToList();
 
             var result = new DogeResult
                 {
@@ -41,12 +41,12 @@ namespace HipperChat.Core.Helpers
             foreach (var s in fullList)
             {
                 DogeAccent dummy;
-                if (DogeAccent.TryParse(s, out dummy))
+                if (DogeAccent.TryParse(s, true, out dummy))
                 {
                     continue;
                 }
 
-                if (_rng.NextDouble() > 0.2) // for determinism
+                if (_rng.NextDouble() > 0.6) // for determinism
                 {
                     result.DogePairs.Add(DogePair.Wow);
                 }
@@ -101,7 +101,7 @@ namespace HipperChat.Core.Helpers
                 }
 
                 var indent = 0;
-                if (_rng.NextDouble() > 0.5)
+                if (_rng.NextDouble() > 0.2)
                 {
                     indent = _rng.Next(playLength + 1);
                 }

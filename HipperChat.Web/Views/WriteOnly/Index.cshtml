@@ -29,11 +29,14 @@
         });
 
         $("a.a-emoticon").on("click", function () {
-            $("#Message").val($("#Message").val() + $(this).html());
+            $("#Message").val($("#Message").val() + $(this).html() + ' ');
         });
         
+        $("#doge-button").on("click", function () {
+            dogify();
+        });
         function dogify() {
-            $(".very-markup").not($(this)).attr("checked", true);
+            $("#very-markup").not($(this)).attr("checked", true);
             var actionLink = '@(Url.Action("Dogify"))' + '?toDogify=' + $("#Message").val();
             $.ajax({
                 url: actionLink,
@@ -70,7 +73,7 @@
                 <td>@Html.LabelFor(a => a.IsHtml, "Very marked up?")
                 </td>
                 <td>
-                    @Html.CheckBoxFor(a => a.IsHtml, new Dictionary<string, object>{{"class", "very-markup"}})
+                    @Html.CheckBoxFor(a => a.IsHtml, new Dictionary<string, object>{{"id", "very-markup"}})
                 </td>
             </tr>
             <tr>
@@ -102,7 +105,7 @@
     </table>
         
     <button type="submit">Hit it</button>
-    <button onclick="dogify()">Dogify</button>
+    <button type="button" id="doge-button">Dogify</button>
 }
 
 <div id="emoticons">
