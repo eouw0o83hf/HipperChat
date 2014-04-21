@@ -13,6 +13,8 @@ namespace HipperChat.Core.Helpers
         public string ConvenientlyFormattedDogePairs { get; set; }
 
         public List<DogePair> DogePairs { get; set; }
+
+        public Uri DaasImgUrl { get; set; }
     }
 
     public class DogePair

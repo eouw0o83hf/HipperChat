@@ -31,13 +31,27 @@
         $("a.a-message-append").on("click", function () {
             $("#Message").val($("#Message").val() + $(this).html() + ' ');
         });
-        
+
         $("#doge-button").on("click", function () {
             dogify();
         });
+        $("#doge-img-button").on("click", function () {
+            dogifyImg();
+        });
+        function dogifyImg() {
+            $("#very-markup").not($(this)).attr("checked", true);
+            var actionLink = '@(Url.RouteUrl("DogifyImg"))' + '/' + $("#Message").val();
+            $.ajax({
+                url: actionLink,
+                type: "post",
+                success: function (data) {
+                    $("#Message").val('<img src=' + data + '>');
+                },
+            });
+        }
         function dogify() {
             $("#very-markup").not($(this)).attr("checked", true);
-            var actionLink = '@(Url.Action("Dogify"))' + '?toDogify=' + $("#Message").val();
+            var actionLink = '@(Url.RouteUrl("Dogify"))' + '/' + $("#Message").val();
             $.ajax({
                 url: actionLink,
                 type: "post",
@@ -107,13 +121,14 @@
         
     <button type="submit">Wow</button>
     <button type="button" id="doge-button">Dogify</button>
-}
+
+    <button type="button" id="doge-img-button">Daas-ify</button>}
 
 <div id="users">
     @{
         var users = from e in Model.Users
-                        orderby e.Name
-                        select e;
+                    orderby e.Name
+                    select e;
     }
     
     <ul>

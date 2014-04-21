@@ -20,6 +20,18 @@ namespace HipperChat.Web
             );
 
             routes.MapRoute(
+                name: "Dogify",
+                url: "writeonly/dogify/{toDogify}",
+                defaults: new { controller = "WriteOnly", action = "Dogify", toDogify = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DogifyImg",
+                url: "writeonly/dogifyimg/{toDogify}",
+                defaults: new { controller = "WriteOnly", action = "DogifyImg", toDogify = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }

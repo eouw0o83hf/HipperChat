@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -58,6 +60,8 @@ namespace HipperChat.Core.Helpers
 
             result.ConvenientlyFormattedDogePairs = Format(result.DogePairs, max*2);
 
+            result.DaasImgUrl = new Uri(LoadDogeServiceUrl(result.DogePairs));
+
             return result;
         }
 
@@ -111,6 +115,20 @@ namespace HipperChat.Core.Helpers
             }
 
             return builder.ToString();
+        }
+
+        public string LoadDogeServiceUrl(List<DogePair> doges)
+        {
+            var urlBuilder = new StringBuilder(@"http://dogr.io/");
+
+            foreach (var doge in doges)
+            {
+                urlBuilder.Append("/" + doge.ToString().Replace(" ", String.Empty));
+            }
+
+            urlBuilder.Append(".png");
+
+            return urlBuilder.ToString();
         }
     }
 }

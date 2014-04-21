@@ -101,7 +101,19 @@ namespace HipperChat.Web.Controllers
             }
             var dogifier = new DogifyService();
             var result = dogifier.Dogify(toDogify);
-            return new ContentResult{Content = result.ConvenientlyFormattedDogePairs };
+            return new ContentResult { Content = result.ConvenientlyFormattedDogePairs };
+        }
+
+        [HttpPost]
+        public ActionResult DogifyImg(string toDogify)
+        {
+            if (String.IsNullOrEmpty(toDogify))
+            {
+                return new EmptyResult();
+            }
+            var dogifier = new DogifyService();
+            var result = dogifier.Dogify(toDogify);
+            return new ContentResult { Content = result.DaasImgUrl.ToString() };
         }
     }
 }
